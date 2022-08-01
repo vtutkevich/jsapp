@@ -20,9 +20,9 @@ jobs:
       - name: Docker login
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         run: |
-          docker login ghcr.io -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
 #      - name: Run a multi-line script
 #        run: |
 #          docker build -t $DOCKER_USER/jsapp:v1.0.0 .
