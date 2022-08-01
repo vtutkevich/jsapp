@@ -20,12 +20,8 @@ jobs:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     steps:
       - uses: actions/checkout@v3
-      - name: Docker login
-        run: |
-          docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
-      - name: Docker build
+      - name: Docker image build and push
         run: |
           docker build -t $DOCKER_USER/jsapp:v1.0.0 .
-#      - name: Docker push
-#        run: |
+          docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
           docker push ghcr.io/$DOCKER_USER/jsapp:v1.0.0
