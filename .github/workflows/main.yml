@@ -13,17 +13,17 @@ on:
   workflow_dispatch:
 
 jobs:
+  env:
+    DOCKER_USER: ${{ secrets.DOCKER_USER }}
+    DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Docker login
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         run: |
           docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
-#      - name: Run a multi-line script
+#      - name: Docker build
 #        run: |
 #          docker build -t $DOCKER_USER/jsapp:v1.0.0 .
 #      - name: Docker push
