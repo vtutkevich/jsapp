@@ -7,16 +7,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: node:13.5.0-alpine3.10
+      image: node:16-alpine3.15
     steps:
-      - uses: actions/checkout@v3
-      - name: Docker image build
-        run: |
-          npm install
-#          docker build -t ghcr.io/$DOCKER_USER/jsapp:v1.0.0 .
-#      - name: Docker login
-#        run: |
-#          docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
-#      - name: Docker image push
-#        run: |
-#          docker push ghcr.io/$DOCKER_USER/jsapp:v1.0.0
+      - name: Node version 16 in jobs config
+        run: node -v
+      - name: Node version 13.5.0
+        uses: docker://node:13.5.0-alpine3.10
+        with:
+          entrypoint: /user/local/bin/node
+          args: -v
+      - name: Node version 15.5.0
+        uses: docker://node:15.5.0-alpine3.10
+        with:
+          entrypoint: /user/local/bin/node
+          args: -v
+
