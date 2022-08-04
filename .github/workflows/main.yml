@@ -1,31 +1,23 @@
-# This is a basic workflow to help you get started with Actions
-
 name: jsapp-build
-
-# Controls when the workflow will run
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      container:
+        image: node:15.5.0-alpine3.10
     steps:
       - uses: actions/checkout@v3
       - name: Docker image build
         run: |
-          docker build -t ghcr.io/$DOCKER_USER/jsapp:v1.0.0 .
-      - name: Docker login
-        run: |
-          docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
-      - name: Docker image push
-        run: |
-          docker push ghcr.io/$DOCKER_USER/jsapp:v1.0.0
+          node -v
+          ls -l
+#          docker build -t ghcr.io/$DOCKER_USER/jsapp:v1.0.0 .
+#      - name: Docker login
+#        run: |
+#          docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
+#      - name: Docker image push
+#        run: |
+#          docker push ghcr.io/$DOCKER_USER/jsapp:v1.0.0
