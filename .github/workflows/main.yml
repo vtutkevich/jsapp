@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: node:10.5.3
+      image: node:13.5.0-alpine3.10
     steps:
       - uses: actions/checkout@v3
       - name: Docker image build
