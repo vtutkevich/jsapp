@@ -14,11 +14,11 @@ jobs:
       - name: Node version 13.5.0
         uses: docker://node:13.5.0-alpine3.10
         with:
-          entrypoint: /user/local/bin/node
+          entrypoint: /usr/local/bin/node
           args: -v
       - name: Node version 15.5.0
         uses: docker://node:15.5.0-alpine3.10
         with:
-          entrypoint: /user/local/bin/node
+          entrypoint: /usr/local/bin/node
           args: -v
 
