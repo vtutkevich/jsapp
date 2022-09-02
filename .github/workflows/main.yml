@@ -17,7 +17,6 @@ jobs:
     env:
       DOCKER_USER: ${{ secrets.DOCKER_USER }}
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-      BRANCH: $(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')
     steps:
       - uses: actions/checkout@v3
       - name: Docker image build
