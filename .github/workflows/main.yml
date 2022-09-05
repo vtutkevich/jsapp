@@ -19,10 +19,15 @@ jobs:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+      - uses: ASzc/change-string-case-action@v2
+        id: lowercase
+        with:
+          string: ${{ steps.findandreplace.outputs.value }}
       - name: Docker image build
         run: |
-          TAG=$( echo ${GITHUB_REF##*/} | tr [:upper:] [:lower:] )
-          echo docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG} .
+          echo "The replaced value is ${{ steps.lowercase.outputs.lowercase }}"
+ #         TAG=$( echo ${GITHUB_REF##*/} | tr [:upper:] [:lower:] )
+ #         echo docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG} .
 #      - name: Docker login
 #        run: |
 #          echo docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
