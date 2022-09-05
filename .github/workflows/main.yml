@@ -20,18 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ASzc/change-string-case-action@v2
-        id: lowercase
+        id: tag
         with:
           string: ${{ github.ref }}
       - name: Docker image build
         run: |
-          echo "The replaced value is ${{ steps.lowercase.outputs.lowercase }}"
-          TAG=${{ steps.lowercase.outputs.lowercase }}
+          TAG=${{ steps.tag.outputs.lowercase }}
           echo docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG} .
-#      - name: Docker login
-#        run: |
-#          echo docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
-#      - name: Docker image push
-#        run: |
-#          echo docker push ghcr.io/$DOCKER_USER/jsapp:${BRANCH}
+          echo docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
+          echo docker push ghcr.io/$DOCKER_USER/jsapp:${TAG}
 
