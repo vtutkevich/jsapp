@@ -26,7 +26,7 @@ jobs:
       - name: Docker image build
         run: |
           TAG=${{ steps.tag.outputs.lowercase }}
-          echo docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG##*/} .
-          echo docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
-          echo docker push ghcr.io/$DOCKER_USER/jsapp:${TAG##*/}
+          docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG##*/} .
+          docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
+          docker push ghcr.io/$DOCKER_USER/jsapp:${TAG##*/}
 
