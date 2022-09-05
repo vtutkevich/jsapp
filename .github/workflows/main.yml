@@ -17,16 +17,16 @@ jobs:
     env:
       DOCKER_USER: ${{ secrets.DOCKER_USER }}
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      TAG: $(echo ${{GITHUB_REF##*/}} | tr [:upper:] [:lower:] )
     steps:
       - uses: actions/checkout@v3
       - name: Docker image build
         run: |
-          echo ::set-env name=BRANCH::$(tr '[:upper:]' '[:lower:]' <<<"${GITHUB_REF#refs/heads/}")
           echo docker build -t ghcr.io/$DOCKER_USER/jsapp:${BRANCH} .
-      - name: Docker login
-        run: |
-          echo docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
-      - name: Docker image push
-        run: |
-          echo docker push ghcr.io/$DOCKER_USER/jsapp:${BRANCH}
+#      - name: Docker login
+#        run: |
+#          echo docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
+#      - name: Docker image push
+#        run: |
+#          echo docker push ghcr.io/$DOCKER_USER/jsapp:${BRANCH}
 
