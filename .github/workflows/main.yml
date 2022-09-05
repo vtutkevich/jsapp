@@ -22,12 +22,12 @@ jobs:
       - uses: ASzc/change-string-case-action@v2
         id: lowercase
         with:
-          string: ${{ GITHUB_REF }}
+          string: AABBCC
       - name: Docker image build
         run: |
           echo "The replaced value is ${{ steps.lowercase.outputs.lowercase }}"
- #         TAG=$( echo ${GITHUB_REF##*/} | tr [:upper:] [:lower:] )
- #         echo docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG} .
+          TAG=$( echo ${GITHUB_REF##*/} | tr [:upper:] [:lower:] )
+          echo docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG} .
 #      - name: Docker login
 #        run: |
 #          echo docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
