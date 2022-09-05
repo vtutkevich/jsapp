@@ -22,7 +22,7 @@ jobs:
       - uses: ASzc/change-string-case-action@v2
         id: lowercase
         with:
-          string: ${{ steps.findandreplace.outputs.value }}
+          string: ${{ GITHUB_REF }}
       - name: Docker image build
         run: |
           echo "The replaced value is ${{ steps.lowercase.outputs.lowercase }}"
