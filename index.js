@@ -6,7 +6,7 @@ app.get('/', (request, response) => {
 })
 
 app.get('/status', (request, response) => {
-	response.send('<center><h3>Version: FS-100</h3></center>')
+	response.send('<center><h3>Version: FS-1001</h3></center>')
 })
 
 
