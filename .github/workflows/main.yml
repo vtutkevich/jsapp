@@ -19,14 +19,17 @@ jobs:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+      - uses: tj-actions/branch-names@v6
+        id: branch
       - uses: ASzc/change-string-case-action@v2
         id: tag
         with:
-          string: ${{ github.ref }}
+          string: ${{ steps.branch.outputs.current_branch }}
       - name: Docker image build
         run: |
           echo GITHUB_REPOSITORY ${GITHUB_REPOSITORY#*/}
           echo github.ref ${{ github.ref }}
+          echo steps.tag.outputs.lowercase ${{ steps.tag.outputs.lowercase }}
           #TAG=${{ steps.tag.outputs.lowercase }}
           #docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG##*/} .
           #docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
