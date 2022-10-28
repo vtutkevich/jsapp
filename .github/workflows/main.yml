@@ -34,6 +34,12 @@ jobs:
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ env.DOCKER_USER }}
           password: ${{ env.DOCKER_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          tags: ${{ env.DOCKER_REGISTRY }}/jsapp:${{ steps.tag.outputs.lowercase }}
+          push: false
       - name: Docker image build and additional output
         run: |
           echo GITHUB_REPOSITORY ${GITHUB_REPOSITORY#*/}
