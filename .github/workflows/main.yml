@@ -39,7 +39,7 @@ jobs:
         with:
           context: .
           tags: ${{ env.DOCKER_REGISTRY }}/jsapp:${{ steps.tag.outputs.lowercase }}
-          push: false
+          push: true
       - name: Docker image build and additional output
         run: |
           echo GITHUB_REPOSITORY ${GITHUB_REPOSITORY#*/}
