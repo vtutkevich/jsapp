@@ -30,7 +30,7 @@ jobs:
           echo GITHUB_REPOSITORY ${GITHUB_REPOSITORY#*/}
           echo github.ref ${{ github.ref }}
           echo GITHUB_REF_NAME ${GITHUB_REF_NAME}
-          echo github.repository ${{ github.repository }}
+          echo github.repository ${{ github.repository_name }}
           echo steps.tag.outputs.lowercase ${{ steps.tag.outputs.lowercase }}
           #TAG=${{ steps.tag.outputs.lowercase }}
           #docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG##*/} .
