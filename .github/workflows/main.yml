@@ -15,6 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      DOCKER_REGISTRY: "ghcr.io"
       DOCKER_USER: ${{ secrets.DOCKER_USER }}
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     steps:
@@ -30,6 +31,7 @@ jobs:
       - name: Login to Docker Artifactory
         uses: docker/login-action@v2
         with:
+          registry: $DOCKER_REGISTRY
           username: $DOCKER_USER
           password: $DOCKER_TOKEN
       - name: Docker image build and additional output
