@@ -22,6 +22,12 @@ jobs:
       - uses: actions/checkout@v3
       - uses: tj-actions/branch-names@v6
         id: branch
+      - uses: xom9ikk/split@v1
+        id: repo
+        with:
+          string: ${{ github.repository }}
+          separator: /
+          limit: -1
       - uses: ASzc/change-string-case-action@v2
         id: tag
         with:
@@ -47,6 +53,7 @@ jobs:
           echo GITHUB_REF_NAME ${GITHUB_REF_NAME}
           echo github.repository ${{ github.repository }}
           echo steps.tag.outputs.lowercase ${{ steps.tag.outputs.lowercase }}
+          echo repo ${{ steps.repo.outputs._1 }}
      
           #TAG=${{ steps.tag.outputs.lowercase }}
           #docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG##*/} .
