@@ -34,19 +34,20 @@ jobs:
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ env.DOCKER_USER }}
           password: ${{ env.DOCKER_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          tags: ${{ env.DOCKER_REGISTRY }}/jsapp:${{ steps.tag.outputs.lowercase }}
-          push: true
+     # - name: Build and push
+     #   uses: docker/build-push-action@v3
+     #   with:
+     #     context: .
+     #     tags: ${{ env.DOCKER_REGISTRY }}/jsapp:${{ steps.tag.outputs.lowercase }}
+     #     push: true
       - name: Docker image build and additional output
         run: |
           echo GITHUB_REPOSITORY ${GITHUB_REPOSITORY#*/}
           echo github.ref ${{ github.ref }}
           echo GITHUB_REF_NAME ${GITHUB_REF_NAME}
-          echo github.repository ${{ github.repository_name }}
+          echo github.repository ${{ github.repository }}
           echo steps.tag.outputs.lowercase ${{ steps.tag.outputs.lowercase }}
+     
           #TAG=${{ steps.tag.outputs.lowercase }}
           #docker build -t ghcr.io/$DOCKER_USER/jsapp:${TAG##*/} .
           #docker login ghcr.io -u $DOCKER_USER -p $DOCKER_TOKEN
