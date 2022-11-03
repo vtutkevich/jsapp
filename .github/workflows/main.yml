@@ -42,7 +42,7 @@ jobs:
           password: ${{ env.DOCKER_TOKEN }}
       - name: Check branch
         if: github.ref_name == 'master'
-        run: echo Branch ${{ gihub.ref_name }}
+        run: echo Branch ${{ github.ref_name }}
      # - name: Build and push
      #   uses: docker/build-push-action@v3
      #   with:
