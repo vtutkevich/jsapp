@@ -40,6 +40,9 @@ jobs:
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ env.DOCKER_USER }}
           password: ${{ env.DOCKER_TOKEN }}
+      - name: Check branch 2
+        if: github.ref_name == 'master'
+        run: echo Branch ${{ github.ref_name }}
      # - name: Build and push
      #   uses: docker/build-push-action@v3
      #   with:
